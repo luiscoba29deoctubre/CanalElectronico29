@@ -1,0 +1,34 @@
+<h1>Estructuras</h1>
+<ul class="nav nav-tabs side_nav" role="tablist">
+  <li
+    *ngFor="let estructura of estructuras; let first = first"
+    [ngClass]="{ firstItem: first }"
+    role="presentation"
+    class="accounts_li"
+    [class.active]="selectedEstructura === estructura"
+  >
+    <a
+      (click)="selectedEstructura = estructura"
+      aria-controls="one"
+      role="tab"
+      data-toggle="tab"
+    >
+      {{ estructura }}
+    </a>
+  </li>
+</ul>
+
+<div class="tab-content">
+  <div
+    *ngIf="selectedEstructura === estructuras[0]"
+    role="tabpanel"
+    class="tab-pane active"
+    id="one"
+  ></div>
+  <div
+    *ngIf="selectedEstructura === estructuras[1]"
+    role="tabpanel"
+    class="tab-pane active"
+    id="two"
+  ></div>
+</div>

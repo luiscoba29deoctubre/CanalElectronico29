@@ -1,0 +1,15 @@
+<h1>Parametrización</h1>
+<ul class="nav nav-tabs side_nav" role="tablist">
+    <li *ngFor="let estructura of parametrizacion; let first = first;" [ngClass]="{firstItem: first}" role="presentation"
+        class="accounts_li" [class.active]="selectedParametrizacion===estructura">
+        <a (click)="selectedEstructura = estructura" aria-controls="one" role="tab" data-toggle="tab">
+            {{estructura}}
+        </a>
+    </li>
+</ul>
+
+<div class="tab-content">
+    <div *ngIf="selectedParametrizacion === parametrizacion[0]" role="tabpanel" class="tab-pane active" id="one">
+
+    </div>
+</div>

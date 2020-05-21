@@ -1,0 +1,19 @@
+.pane{
+  padding: 1em;
+}
+.tab-close {
+  color: gray;
+  text-align: right;
+  cursor: pointer;
+}
+.PAGOCOSEDE{
+  text-align: center;
+}
+.input{
+  text-align: left;
+  padding: 0px 5px 5px 5px;
+}
+.titulo{
+  text-align: left;
+  padding: 0px 5px 5px 5px;
+}

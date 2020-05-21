@@ -1,0 +1,21 @@
+<h1>Consultas</h1>
+<ul class="nav nav-tabs side_nav" role="tablist">
+    <li *ngFor="let consulta of consultas; let first = first;" [ngClass]="{firstItem: first}" role="presentation"
+        class="accounts_li" [class.active]="selectedConsulta===consulta">
+        <a (click)="selectedConsulta = consulta" aria-controls="one" role="tab" data-toggle="tab">
+            {{consulta}}
+        </a>
+    </li>
+</ul>
+
+<div class="tab-content">
+    <div *ngIf="selectedConsulta === consultas[0]" role="tabpanel" class="tab-pane active" id="one">
+    <h2></h2>
+    </div>
+    <div *ngIf="selectedConsulta === consultas[1]" role="tabpanel" class="tab-pane active" id="two">
+        
+    </div>
+    <div *ngIf="selectedConsulta === consultas[2]" role="tabpanel" class="tab-pane active" id="three">
+        
+    </div>
+</div>

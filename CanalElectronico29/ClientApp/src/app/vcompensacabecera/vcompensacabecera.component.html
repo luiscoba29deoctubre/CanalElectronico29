@@ -1,0 +1,49 @@
+<div *ngIf="!vCompensaCabeceraList">
+  Loading...
+</div>
+
+<button (click)="ngOnInit()">Save</button>
+<table *ngIf="vCompensaCabeceraList">
+  <thead>
+    <tr>
+      <!--todo esto sale de Vposcompensacabecera-->
+      <th>Fecha</th>
+      <th>Convenio</th>
+      <!--es el usuario que se logueo-->
+      <th>Nombre</th>
+      <th>Estado</th>
+      <th>Compensados</th>
+      <th>Rechazados</th>
+      <th>T.Transacción</th>
+      <th>T.Liquidado</th>
+      <th>T.Comisión</th>
+      <th>Detalles</th>
+      <th>Autorizar</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let vcabecera of vCompensaCabeceraList">
+      <td>{{ vcabecera.fproceso }}</td>
+      <td>{{ vcabecera.convenio }}</td>
+      <td>{{ vcabecera.usuarioautorizacion }}</td>
+      <td>{{ vcabecera.cestado }}</td>
+      <td>compensado</td>
+      <td>rechazados</td>
+      <td>{{ vcabecera.id }}</td>
+      <td>{{ vcabecera.id }}</td>
+      <td>{{ vcabecera.id }}</td>
+      <td>{{ vcabecera.id }}</td>
+      <!--idconvenio: number; fproceso: Date; convenio: string; cestado: string;
+        fautorizacion: Date; usuarioAutorizacion: string; transferencia: string;
+        comision: string; retencionfte: string; retencioniva: string; error:
+        string;-->
+      <td>
+        <input
+          type="checkbox"
+          [value]="vcabecera.id"
+          (change)="onCheckboxChange($event)"
+        />
+      </td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,94 @@
+<h1>Cajas</h1>
+<ul class="nav nav-tabs side_nav" role="tablist">
+    <li *ngFor="let caja of cajas; let first = first;" [ngClass]="{firstItem: first}" role="presentation"
+        class="accounts_li" [class.active]="selectedCaja===caja">
+        <a (click)="selectedCaja = caja" aria-controls="one" role="tab" data-toggle="tab">
+            {{caja}}
+        </a>
+    </li>
+</ul>
+
+<div class="tab-content">
+    <div *ngIf="selectedCaja === cajas[0]" role="tabpanel" class="tab-pane active" id="one">
+        <div class="PAGOCOSEDE">
+            <br>
+            <h4>PAGOS COSEDE</h4>   
+            <form>   
+                <div class="col-sm-3">
+
+                </div> 
+                <div class="col-sm-2 ">
+                    <div class="titulo">
+                        <label for="identificaion">Identificación:(*)</label>
+                    </div>
+                    <div class="titulo">
+                        <label for="tipoIdentificaion">Tipo Identificación:(*)</label>
+                    </div>
+                    <div class="titulo">
+                        <label for="identificaion">Identificación:(*)</label>
+                    </div>
+                    <div class="titulo">
+                        <label for="nombre">Nombre:(*)</label>
+                    </div>
+                    <div class="titulo">
+                        <label for="institucion">Institución:(*)</label>
+                    </div>
+                    <div class="titulo">
+                        <label for="direccion">Dirección:(*)</label>
+                    </div>
+                    <div class="titulo">
+                        <label for="telefono">Teléfono:(*)</label>
+                    </div>
+                    <div class="titulo">
+                        <label for="celular">Celular:</label>
+                    </div>
+                    <div class="titulo">
+                        <label for="correo">Correo:</label>
+                    </div>
+                    <div class="titulo">
+                        <label for="monto">Monto:(*)</label>
+                    </div>    
+                </div>
+                <div class="col-sm-4">
+                    <div class="input">
+                        <input size = 40 id="identificaion" name="identificaion" type="text" value="" >    
+                    </div>
+                    <div class="input">
+                        <input size = 40 id="tipoIdentificaion" name="tipoIdentificaion" type="text" value="" disabled>    
+                    </div>
+                    <div class="input">
+                        <input size = 40 id="identificaion" name="identificaion" type="text" value="" disabled>    
+                    </div>
+                    <div class="input">
+                        <input size = 40 id="nombre" name="nombre" type="text" value="" disabled>    
+                    </div>
+                    <div class="input">
+                        <input size = 40 id="institucion" name="institucion" type="text" value="" disabled>    
+                    </div>
+                    <div class="input">
+                        <input size = 40 id="direccion" name="direccion" type="text" value=""disabled>    
+                    </div>
+                    <div class="input">
+                        <input size = 40 id="telefono" name="telefono" type="text" value="" disabled>    
+                    </div>
+                    <div class="input">
+                        <input size = 40 id="celular" name="celular" type="text" value="" disabled>    
+                    </div>
+                    <div class="input">
+                        <input size = 40 id="correo" name="correo" type="text" value="" disabled>    
+                    </div>
+                    <div class="input">
+                        <input size = 40 id="monto" name="monto" type="text" value="" disabled>    
+                    </div>                      
+                </div>         
+                
+                <div class="col-sm-3">
+                    
+                </div>         
+            </form> 
+        </div>
+    </div>
+    <div *ngIf="selectedCaja === cajas[1]" role="tabpanel" class="tab-pane active" id="two">
+        
+    </div>
+</div>

@@ -1,0 +1,96 @@
+<div class="main-nav">
+  <div
+    class="navbar navbar-default"
+    style="background-color: #8b2233; color: #8b2233;"
+  >
+    <div class="navbar-header">
+      <a class="navbar-brand" style="color: white;" [routerLink]="['/']"
+        >Canal Electrónico</a
+      >
+    </div>
+    <div class="clearfix"></div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav mr-auto">
+        <li [routerLinkActive]="['link-active']">
+          <a
+            [routerLink]="['/cajas']"
+            (click)="collapse()"
+            style="color: white;"
+          >
+            <span class="glyphicon glyphicon-inbox"></span> Cajas</a
+          >
+        </li>
+        <li [routerLinkActive]="['link-active']">
+          <a
+            [routerLink]="['/consultas']"
+            (click)="collapse()"
+            style="color: white;"
+          >
+            <span class="glyphicon glyphicon-search"></span> Consultas
+          </a>
+        </li>
+        <li [routerLinkActive]="['link-active']">
+          <a
+            [routerLink]="['/estructuras']"
+            (click)="collapse()"
+            style="color: white;"
+          >
+            <span class="glyphicon glyphicon-book"></span> Estructuras
+          </a>
+        </li>
+        <li [routerLinkActive]="['link-active']">
+          <a
+            [routerLink]="['/parametrizacion']"
+            (click)="collapse()"
+            style="color: white;"
+          >
+            <span class="glyphicon glyphicon-wrench"></span> Parametrización
+          </a>
+        </li>
+        <li [routerLinkActive]="['link-active']">
+          <a
+            [routerLink]="['/procesos']"
+            (click)="collapse()"
+            style="color: white;"
+          >
+            <span class="glyphicon glyphicon-object-align-bottom"></span>
+            Procesos
+          </a>
+        </li>
+
+        <li [routerLinkActive]="['link-active']">
+          <a
+            [routerLink]="['/estado-data']"
+            (click)="collapse()"
+            style="color: white;"
+          >
+            <span class="glyphicon glyphicon-object-align-bottom"></span>
+            Estados
+          </a>
+        </li>
+
+        <li [routerLinkActive]="['link-active']">
+          <a
+            [routerLink]="['/cabecera']"
+            (click)="collapse()"
+            style="color: white;"
+          >
+            <span class="glyphicon glyphicon-object-align-bottom"></span>
+            Cabecera
+          </a>
+        </li>
+
+        <li [routerLinkActive]="['link-active']">
+          <a
+            [routerLink]="['/vcabecera']"
+            (click)="collapse()"
+            style="color: white;"
+          >
+            <span class="glyphicon glyphicon-object-align-bottom"></span>
+            VCabecera
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

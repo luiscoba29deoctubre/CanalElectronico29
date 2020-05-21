@@ -1,0 +1,118 @@
+<h1>Procesos</h1>
+<ul class="nav nav-tabs side_nav" role="tablist">
+  <li
+    *ngFor="let proceso of procesos; let first = first"
+    [ngClass]="{ firstItem: first }"
+    role="presentation"
+    class="accounts_li"
+    [class.active]="selectedProceso === proceso"
+  >
+    <a
+      (click)="selectedProceso = proceso"
+      aria-controls="one"
+      role="tab"
+      data-toggle="tab"
+    >
+      {{ proceso }}
+    </a>
+  </li>
+</ul>
+
+<div class="tab-content">
+  <div
+    *ngIf="selectedProceso === procesos[0]"
+    role="tabpanel"
+    class="tab-pane active"
+    id="one"
+  >
+    <ul class="nav nav-tabs side_nav" role="tablist">
+      <li
+        *ngFor="let proceso2 of procesos2; let first = first"
+        [ngClass]="{ firstItem: first }"
+        role="presentation"
+        class="accounts_li"
+        [class.active]="selectedProceso2 === proceso2"
+      >
+        <a
+          (click)="selectedProceso2 = proceso2"
+          aria-controls="one"
+          role="tab"
+          data-toggle="tab"
+        >
+          {{ proceso2 }}
+        </a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div
+        *ngIf="selectedProceso2 === procesos2[0]"
+        role="tabpanel"
+        class="tab-pane active"
+        id="one2"
+      ></div>
+      <div
+        *ngIf="selectedProceso2 === procesos2[1]"
+        role="tabpanel"
+        class="tab-pane active"
+        id="two2"
+      ></div>
+      <div
+        *ngIf="selectedProceso2 === procesos2[2]"
+        role="tabpanel"
+        class="tab-pane active"
+        id="three2"
+      ></div>
+      <div
+        *ngIf="selectedProceso2 === procesos2[3]"
+        role="tabpanel"
+        class="tab-pane active"
+        id="four2"
+      ></div>
+      <div
+        *ngIf="selectedProceso2 === procesos2[4]"
+        role="tabpanel"
+        class="tab-pane active"
+        id="five2"
+      ></div>
+    </div>
+  </div>
+  <div
+    *ngIf="selectedProceso === procesos[1]"
+    role="tabpanel"
+    class="tab-pane active"
+    id="two"
+  >
+    <ul class="nav nav-tabs side_nav" role="tablist">
+      <li
+        *ngFor="let pos of pos; let first = first"
+        [ngClass]="{ firstItem: first }"
+        role="presentation"
+        class="accounts_li"
+        [class.active]="selectedPos === pos"
+      >
+        <a
+          (click)="selectedPos = pos"
+          aria-controls="one"
+          role="tab"
+          data-toggle="tab"
+        >
+          {{ pos }}
+        </a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div
+        *ngIf="selectedPos === pos[0]"
+        role="tabpanel"
+        class="tab-pane active"
+        id="oneP"
+      ></div>
+      <div
+        *ngIf="selectedPos === pos[1]"
+        role="tabpanel"
+        class="tab-pane active"
+        id="twoP"
+      ></div>
+    </div>
+  </div>
+</div>
