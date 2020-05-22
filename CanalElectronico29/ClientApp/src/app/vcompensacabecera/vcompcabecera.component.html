@@ -10,28 +10,84 @@
       </td>
     </ng-container>
 
-    <!-- Position Column -->
-    <ng-container matColumnDef="position">
-      <th mat-header-cell *matHeaderCellDef>No.</th>
-      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
-    </ng-container>
-
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>Name</th>
+    <!-- fproceso Column -->
+    <ng-container matColumnDef="fproceso">
+      <th mat-header-cell *matHeaderCellDef>Fecha</th>
       <td mat-cell *matCellDef="let element">{{ element.fproceso }}</td>
     </ng-container>
 
-    <!-- Weight Column -->
-    <ng-container matColumnDef="weight">
-      <th mat-header-cell *matHeaderCellDef>Weight</th>
+    <!-- convenio Column -->
+    <ng-container matColumnDef="convenio">
+      <th mat-header-cell *matHeaderCellDef>Convenio</th>
       <td mat-cell *matCellDef="let element">{{ element.convenio }}</td>
     </ng-container>
 
-    <!-- Symbol Column -->
-    <ng-container matColumnDef="symbol">
-      <th mat-header-cell *matHeaderCellDef>Symbol</th>
+    <!-- nombre Column -->
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef>Nombre</th>
       <td mat-cell *matCellDef="let element">{{ element.nombre }}</td>
+    </ng-container>
+
+    <!-- fautorizacion Column -->
+    <ng-container matColumnDef="fautorizacion">
+      <th mat-header-cell *matHeaderCellDef>Fautorizacion</th>
+      <td mat-cell *matCellDef="let element">{{ element.fautorizacion }}</td>
+    </ng-container>
+
+    <!-- usuarioautorizacion Column -->
+    <ng-container matColumnDef="usuarioautorizacion">
+      <th mat-header-cell *matHeaderCellDef>UsuarioAutorizador</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.usuarioautorizacion }}
+      </td>
+    </ng-container>
+
+    <!-- error Column -->
+    <ng-container matColumnDef="error">
+      <th mat-header-cell *matHeaderCellDef>Error</th>
+      <td mat-cell *matCellDef="let element">{{ element.error }}</td>
+    </ng-container>
+
+    <!-- estado Column -->
+    <ng-container matColumnDef="estado">
+      <th mat-header-cell *matHeaderCellDef>Estado</th>
+      <td mat-cell *matCellDef="let element">{{ element.estado }}</td>
+    </ng-container>
+
+    <!-- registros Column -->
+    <ng-container matColumnDef="registros">
+      <th mat-header-cell *matHeaderCellDef>Registros</th>
+      <td mat-cell *matCellDef="let element">{{ element.registros }}</td>
+    </ng-container>
+
+    <!-- compensados Column -->
+    <ng-container matColumnDef="compensados">
+      <th mat-header-cell *matHeaderCellDef>Compensados</th>
+      <td mat-cell *matCellDef="let element">{{ element.compensados }}</td>
+    </ng-container>
+
+    <!-- rechazados Column -->
+    <ng-container matColumnDef="rechazados">
+      <th mat-header-cell *matHeaderCellDef>Rechazados</th>
+      <td mat-cell *matCellDef="let element">{{ element.rechazados }}</td>
+    </ng-container>
+
+    <!-- Totaltransaccion Column -->
+    <ng-container matColumnDef="Totaltransaccion">
+      <th mat-header-cell *matHeaderCellDef>T.Transacción</th>
+      <td mat-cell *matCellDef="let element">{{ element.Totaltransaccion }}</td>
+    </ng-container>
+
+    <!-- Totalliquidado Column -->
+    <ng-container matColumnDef="Totalliquidado">
+      <th mat-header-cell *matHeaderCellDef>T.Liquidado</th>
+      <td mat-cell *matCellDef="let element">{{ element.Totalliquidado }}</td>
+    </ng-container>
+
+    <!-- Totalcomision Column -->
+    <ng-container matColumnDef="Totalcomision">
+      <th mat-header-cell *matHeaderCellDef>T.Comision</th>
+      <td mat-cell *matCellDef="let element">{{ element.Totalcomision }}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
@@ -40,7 +96,7 @@
 
   <!-- Angular 8 pagination -->
   <mat-paginator
-    [pageSizeOptions]="[5, 10, 15]"
+    [pageSizeOptions]="[10, 15, 20]"
     showFirstLastButtons
   ></mat-paginator>
 </div>

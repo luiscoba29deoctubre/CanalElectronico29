@@ -96,11 +96,20 @@ import {
 })
 export class VcompensacabeceraComponent {
   displayedColumns: string[] = [
-    "select",
-    "position",
-    "name",
-    "weight",
-    "symbol",
+    "select", //cambiar a autorizar
+    "fproceso",
+    "convenio",
+    "nombre",
+    "fautorizacion",
+    "usuarioautorizacion",
+    "error",
+    "estado",
+    "registros",
+    "compensados",
+    "rechazados",
+    "Totaltransaccion",
+    "Totalliquidado",
+    "Totalcomision",
   ];
   dataSource = new MatTableDataSource<VcompcabeceraDataModel>();
   public vCompensaCabeceraList: VcompcabeceraDataModel[];
