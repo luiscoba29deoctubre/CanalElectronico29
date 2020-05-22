@@ -21,8 +21,12 @@ import { ParametrizacionComponent } from "./parametrizacion/parametrizacion.comp
 import { EstructurasComponent } from "./estructuras/estructuras.component";
 import { ConsultasComponent } from "./consultas/consultas.component";
 import { CajasComponent } from "./cajas/cajas.component";
-import { VcompensacabeceraComponent } from "./vcompensacabecera/vcompensacabecera.component";
-import { VCompensaCabeceraServices } from "src/services/vCompensaCabecera.services";
+import { VcompensacabeceraComponent } from "./vcompensacabecera/vcompcabecera.component";
+import { VcompcabeceraServices } from "src/services/vcompcabecera.services";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { AngularMaterialModule } from "./angular-material.module";
+import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
+import { HeaderComponent } from "./header/header.component";
 
 export const protectedResourceMap: any = [
   [environment.baseUrl, environment.scopeUri],
@@ -37,8 +41,8 @@ export const protectedResourceMap: any = [
     EstructurasComponent,
     ConsultasComponent,
     CajasComponent,
-
     VcompensacabeceraComponent,
+    HeaderComponent,
   ],
   imports: [
     MsalModule.forRoot({
@@ -48,6 +52,7 @@ export const protectedResourceMap: any = [
       protectedResourceMap: protectedResourceMap,
       redirectUri: environment.redirectUrl,
     }),
+    AngularMaterialModule,
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
     AppRoutingModule,
     HttpClientModule,
@@ -60,9 +65,10 @@ export const protectedResourceMap: any = [
       { path: "procesos", component: ProcesosComponent },
       { path: "vcabecera", component: VcompensacabeceraComponent },
     ]),
+    BrowserAnimationsModule,
   ],
   providers: [
-    VCompensaCabeceraServices,
+    VcompcabeceraServices,
     HttpClient,
     MsalUserService,
     {
@@ -72,5 +78,6 @@ export const protectedResourceMap: any = [
     },
   ],
   bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule {}

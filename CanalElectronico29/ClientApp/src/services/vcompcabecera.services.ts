@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Inject } from "@angular/core";
 import { Observable } from "rxjs";
 
-export class VCompensaCabeceraServices {
+export class VcompcabeceraServices {
   appurl = "";
 
   constructor(
@@ -12,13 +12,14 @@ export class VCompensaCabeceraServices {
     this.appurl = _baseurl;
   }
 
-  getAllVcompensaCabecera(): Observable<VcompensaCabeceraDataModel[]> {
-    return this.httpobj.get<VcompensaCabeceraDataModel[]>(
+  getAllVcompensaCabecera(): Observable<VcompcabeceraDataModel[]> {
+    return this.httpobj.get<VcompcabeceraDataModel[]>(
       this.appurl + "api/v1/VCompensaCabecera/GetVcompensaCabecera"
     );
   }
 }
-export interface VcompensaCabeceraDataModel {
+
+export interface VcompcabeceraDataModel {
   id: number;
   fproceso: Date;
   convenio: number;
