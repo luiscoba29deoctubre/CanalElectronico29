@@ -24,6 +24,8 @@ import { VcompcabeceraServices } from "src/services/vcompcabecera.services";
 import { AngularMaterialModule } from "./angular-material.module";
 import { HeaderComponent } from "./header/header.component";
 
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from "@angular/material/form-field";
+
 export const protectedResourceMap: any = [
   [environment.baseUrl, environment.scopeUri],
 ];
@@ -64,6 +66,10 @@ export const protectedResourceMap: any = [
     BrowserAnimationsModule,
   ],
   providers: [
+    {
+      provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+      useValue: { appearance: "fill" },
+    },
     VcompcabeceraServices,
     HttpClient,
     MsalUserService,

@@ -1,12 +1,45 @@
+<mat-divider></mat-divider>
+<section>
+  <div class="example-button-row">
+    <button
+      mat-raised-button
+      color="warn"
+      href="https://www.google.com/"
+      target="_blank"
+    >
+      Autorizar
+    </button>
+  </div>
+</section>
+<mat-divider></mat-divider>
+
+<!-- Filtro -->
+<mat-form-field>
+  <mat-label>Filtro</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="tiendas" />
+</mat-form-field>
+
 <div class="wrapper">
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
     <!-- Checkbox Column -->
     <ng-container matColumnDef="select">
       <th mat-header-cell *matHeaderCellDef>
-        <mat-checkbox> </mat-checkbox>
+        <mat-checkbox
+          (change)="$event ? masterToggle() : null"
+          [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()"
+        >
+        </mat-checkbox>
       </th>
       <td mat-cell *matCellDef="let row">
-        <mat-checkbox> </mat-checkbox>
+        <mat-checkbox
+          (click)="$event.stopPropagation()"
+          (change)="
+            eventCheck($event, row); $event ? selection.toggle(row) : null
+          "
+          [checked]="selection.isSelected(row)"
+        >
+        </mat-checkbox>
       </td>
     </ng-container>
 

@@ -1,93 +1,10 @@
-/*import { Component, ViewChild } from "@angular/core";
-import {
-  VcompcabeceraDataModel,
-  VcompcabeceraServices,
-} from "src/services/vcompcabecera.services";
-import { MatPaginator, MatSort, MatTableDataSource } from "@angular/material";
-
-@Component({
-  selector: "app-vcompensacabecera",
-  templateUrl: "./vcompcabecera.component.html",
-  styleUrls: ["./vcompcabecera.component.css"],
-})
-export class VcompensacabeceraComponent {
-  public vCompensaCabeceraList: VcompcabeceraDataModel[];
-  ELEMENT_DATA: VcompcabeceraDataModel[];
-  items = [];
-  selectedList = [];
-  dataSource = new MatTableDataSource<VcompcabeceraDataModel>();
-
-  constructor(private serviceVcompensaCabecera: VcompcabeceraServices) {
-    this.getAllVcompensaCabecera();
-  }
-
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-
-  ngOnInit() {
-    console.log("compensaCabeceraList", this.vCompensaCabeceraList);
-
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
-  /*
-  ngAfterViewInit() {
-    this.accountService.getAccounts().subscribe(data => {
-      this.dataSource.data = data;
-      console.log(this.dataSource.data);
-    });
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }*/
-/*
-  getAllVcompensaCabecera() {
-    this.serviceVcompensaCabecera
-      .getAllVcompensaCabecera()
-      .subscribe((data) => {
-        console.log("compensaCab ", data);
-        this.vCompensaCabeceraList = data;
-
-        this.ELEMENT_DATA = this.vCompensaCabeceraList;
-        //  this.dataSource = this.ELEMENT_DATA;
-
-        // this.dataSource = new MatTableDataSource(this.ELEMENT_DATA);
-        this.dataSource = new MatTableDataSource<VcompcabeceraDataModel>(
-          this.ELEMENT_DATA
-        );
-
-        console.log("this.ELEMENT_DATA ", this.ELEMENT_DATA);
-        console.log("this.dataSource", this.dataSource);
-      });
-  }
-
-  onCheckboxChange(event) {
-    console.log("cheeeeeeee", event.target.value);
-    let value;
-    let valueToDelete;
-    if (event.target.checked) {
-      value = this.vCompensaCabeceraList.find(
-        (item) => item.id == event.target.value
-      );
-      this.selectedList.push(value);
-    } else {
-      console.log(this.selectedList);
-      console.log(event.target.value);
-      valueToDelete = this.selectedList.find(
-        (item) => item.id == event.target.value
-      );
-      console.log("-----", valueToDelete);
-      this.selectedList.splice(this.selectedList.indexOf(valueToDelete), 1);
-    }
-  }
-  displayedColumns: string[] = ["position", "name", "weight", "symbol"];
-}
-*/
 import { Component, ViewChild } from "@angular/core";
 import { MatPaginator, MatSort, MatTableDataSource } from "@angular/material";
 import {
   VcompcabeceraDataModel,
   VcompcabeceraServices,
 } from "src/services/vcompcabecera.services";
+import { SelectionModel } from "@angular/cdk/collections";
 
 @Component({
   selector: "app-vcompensacabecera",
@@ -111,10 +28,12 @@ export class VcompensacabeceraComponent {
     "Totalliquidado",
     "Totalcomision",
   ];
+
   dataSource = new MatTableDataSource<VcompcabeceraDataModel>();
-  public vCompensaCabeceraList: VcompcabeceraDataModel[];
-  items = [];
+  selection = new SelectionModel<VcompcabeceraDataModel>(true, []);
   selectedList = [];
+
+  // public vCompensaCabeceraList: VcompcabeceraDataModel[];
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -133,28 +52,56 @@ export class VcompensacabeceraComponent {
       .getAllVcompensaCabecera()
       .subscribe((data) => {
         console.log("compensaCab ", data);
-        this.vCompensaCabeceraList = data;
         this.dataSource.data = data;
       });
   }
 
-  onCheckboxChange(event) {
-    console.log("cheeeeeeee", event.target.value);
-    let value;
-    let valueToDelete;
-    if (event.target.checked) {
-      value = this.vCompensaCabeceraList.find(
-        (item) => item.id == event.target.value
-      );
-      this.selectedList.push(value);
-    } else {
-      console.log(this.selectedList);
-      console.log(event.target.value);
-      valueToDelete = this.selectedList.find(
-        (item) => item.id == event.target.value
-      );
-      console.log("-----", valueToDelete);
-      this.selectedList.splice(this.selectedList.indexOf(valueToDelete), 1);
+  // FILTRO
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+  // MéTODOS PARA SELECCIONAR Y DESELECCIONAR LOS CHECKS
+
+  /** Whether the number of selected elements matches the total number of rows. */
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected === numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected()
+      ? ((this.selectedList = []), this.selection.clear())
+      : ((this.selectedList = this.dataSource.data),
+        this.dataSource.data.forEach((row) => this.selection.select(row)));
+
+    console.log("this.selectedList ", this.selectedList);
+  }
+
+  /** The label for the checkbox on the passed row */
+  checkboxLabel(row?: VcompcabeceraDataModel): string {
+    if (!row) {
+      return `${this.isAllSelected() ? "select" : "deselect"} all`;
     }
+    return `${this.selection.isSelected(row) ? "deselect" : "select"} row ${
+      row.id
+    }`;
+  }
+  /**
+   *
+   * @param event // es el evento
+   * @param row // el la fila seleccionada
+   */
+  eventCheck(event, row) {
+    if (event.checked) {
+      this.selectedList.push(row);
+    } else {
+      this.selectedList.splice(this.selectedList.indexOf(row), 1);
+    }
+    console.log("this.selectedList ", this.selectedList);
   }
 }
