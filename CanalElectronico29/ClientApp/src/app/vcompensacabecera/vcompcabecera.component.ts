@@ -103,4 +103,10 @@ export class VcompensacabeceraComponent {
     }
     console.log("this.selectedList ", this.selectedList);
   }
+
+  // BUTTON
+  onSave($event) {
+    console.log("Save button is clicked!", $event);
+    this.serviceVcompensaCabecera.updateEmployee(this.selectedList);
+  }
 }

@@ -17,6 +17,13 @@ export class VcompcabeceraServices {
       this.appurl + "api/v1/VCompensaCabecera/GetVcompensaCabecera"
     );
   }
+
+  updateEmployee(value: any): Observable<Record<string, any>> {
+    return this.httpobj.put<Tposcompensacabecera>(
+      this.appurl + "api/v1/VCompensaCabecera/EditTcompensacabecera",
+      value
+    );
+  }
 }
 
 export interface VcompcabeceraDataModel {
@@ -43,4 +50,19 @@ export interface VcompcabeceraDataModel {
   Totalivacomision: number;
   Totalretencionfte: number;
   Totalretencioniva: number;
+}
+
+export interface Tposcompensacabecera {
+  Id: number;
+  Idconvenio?: number;
+  Fproceso: Date;
+  Convenio: number;
+  Cestado: string;
+  Fautorizacion?: Date;
+  Cusuarioautorizacion: string;
+  Transferencia: string;
+  Comision: string;
+  Retencionfte: string;
+  Retencioniva: string;
+  Error: string;
 }
