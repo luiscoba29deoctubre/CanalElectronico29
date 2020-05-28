@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using CanalElectronico29.DataAccess;
@@ -12,26 +13,41 @@ namespace CanalElectronico29.Controllers
         private readonly DAvCompensaCabecera dbvCompensaCabecera = new DAvCompensaCabecera();
 
         [HttpPut]
-        [Route("EditTcompensacabecera")]
-        public int EditTposcompensacabecera([FromBody] List<int> lstIdsTposcompensacabecera)
+        [Route("EditTcompensacabecera2")]
+        public int EditTposcompensacabecera2([FromBody] List<Tposcompensacabecera> lstTposcompensacabecera)
         {
-            List<int> l = new List<int>();
-            l.Add(1);
-            l.Add(2);
-            //           return dbvCompensaCabecera.UpdateTcompensacabecera(lstTposcompensacabecera);
-            return dbvCompensaCabecera.UpdateTcompensacabecera(l);
+            Console.WriteLine("Se lanza EditTcompensacabecera ");
+            Console.WriteLine("Se lanza EditTcompensacabecera {0} ",
+                              lstTposcompensacabecera);
+
+            List<int> lstIdsTposcompensacabecera = new List<int>();
+
+            foreach (Tposcompensacabecera tposcompensacabecera in lstTposcompensacabecera)
+            {
+                lstIdsTposcompensacabecera.Add(tposcompensacabecera.Id);
+            }
+
+            return dbvCompensaCabecera.UpdateTcompensacabecera(lstIdsTposcompensacabecera);
         }
 
-        [HttpPost]
-        [Route("AddEmployee")]
-        public int AddEmployee([FromBody] Tposcompensacabecera employee)
-        {
-            return dbvCompensaCabecera.AddEmployee(employee);
-        }
+
+        // PUT: api/BlogPosts/5
+        /*        [HttpPut]
+                [Route("EditTcompensacabecera")]
+                public async Task<IActionResult> EditTposcompensacabecera(TransaccionLog asdf)//(TransaccionLog transaccion)
+                {
+                    int x = 0;
+
+                    return NoContent();
+                }
+        */
+
         [HttpGet]
         [Route("GetVcompensaCabecera")]
         public async Task<IEnumerable<Vposcompensacabecera>> GetAllvCompensaCabecera()
         {
+            Console.WriteLine("Se lanza GetVcompensaCabecera ");
+
             return await dbvCompensaCabecera.GetAllvCompensaCabecera();
         }
 

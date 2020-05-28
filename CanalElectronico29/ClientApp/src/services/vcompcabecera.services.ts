@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Inject } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, throwError } from "rxjs";
+import { catchError } from "rxjs/operators";
 
 export class VcompcabeceraServices {
   appurl = "";
@@ -18,11 +19,39 @@ export class VcompcabeceraServices {
     );
   }
 
-  updateEmployee(value: any): Observable<Record<string, any>> {
-    return this.httpobj.put<Tposcompensacabecera>(
-      this.appurl + "api/v1/VCompensaCabecera/EditTcompensacabecera",
-      value
-    );
+  updateEmployee(
+    lstTposcompensacabecera: Tposcompensacabecera[]
+  ): Observable<any> {
+    console.log("value ", lstTposcompensacabecera);
+    return this.httpobj
+      .put<any>(
+        this.appurl + "api/v1/VCompensaCabecera/EditTcompensacabecera2",
+        lstTposcompensacabecera
+      )
+      .pipe(
+        catchError((response) => {
+          console.log("response llega ", { response });
+          if (response.status == 400) {
+            return throwError(response);
+          }
+          if (response.error.mensaje) console.log(response.error.mensaje);
+
+          return throwError(response);
+        })
+      );
+  }
+
+  errorHandler(error) {
+    let errorMessage = "";
+    if (error.error instanceof ErrorEvent) {
+      // Get client-side error
+      errorMessage = error.error.message;
+    } else {
+      // Get server-side error
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    console.log(errorMessage);
+    return throwError(errorMessage);
   }
 }
 

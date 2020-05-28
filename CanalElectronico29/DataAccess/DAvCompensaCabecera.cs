@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -24,27 +23,13 @@ namespace CanalElectronico29.DataAccess
 
         public int UpdateTcompensacabecera(List<int> lstIdsTposcompensacabecera)
         {
+            const string AUTORIZADO = "AUT2";
             try
             {
-                /*  foreach (var tcabecera in lstTposcompensacabecera)
-                  {
-                      dBBUSINTEGRACIONContext.Entry(tcabecera).State = EntityState.Modified;
-                      dBBUSINTEGRACIONContext.SaveChanges();
-                  }*/
-
-                /*            using (var context = new DBBUSINTEGRACIONContext())
-                            {
-                                context.Tposcompensacabecera
-                                .Where(x => lstIdsTposcompensacabecera.Contains(x.Id))
-                                .Update(x => new Tposcompensacabecera { Convenio = 222, Cestado = "Updated" });
-
-                            }*/
-
-
                 using (var db = new DBBUSINTEGRACIONContext())
                 {
                     var myData = db.Tposcompensacabecera.Where(x => lstIdsTposcompensacabecera.Contains(x.Id)).ToList();
-                    myData.ForEach(m => m.Cestado = "xy");
+                    myData.ForEach(m => m.Cestado = AUTORIZADO);
                     db.SaveChanges();
                 }
 

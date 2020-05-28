@@ -32,6 +32,7 @@ export class VcompensacabeceraComponent {
   dataSource = new MatTableDataSource<VcompcabeceraDataModel>();
   selection = new SelectionModel<VcompcabeceraDataModel>(true, []);
   selectedList = [];
+  isFilter;
 
   // public vCompensaCabeceraList: VcompcabeceraDataModel[];
 
@@ -51,15 +52,20 @@ export class VcompensacabeceraComponent {
     this.serviceVcompensaCabecera
       .getAllVcompensaCabecera()
       .subscribe((data) => {
-        console.log("compensaCab ", data);
         this.dataSource.data = data;
       });
   }
 
   // FILTRO
   applyFilter(event: Event) {
+    this.isFilter = true;
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
+    console.log("this.dataSource.filteredData", this.dataSource.filteredData);
+    console.log("1this.selectedList ", this.selectedList);
+    this.selectedList = [];
+    this.selectedList = this.dataSource.filteredData;
+    console.log("2this.selectedList ", this.selectedList);
   }
 
   // MéTODOS PARA SELECCIONAR Y DESELECCIONAR LOS CHECKS
@@ -72,10 +78,35 @@ export class VcompensacabeceraComponent {
   }
 
   /** Selects all rows if they are not all selected; otherwise clear selection. */
+  /*masterToggle() {
+    this.isAllSelected()
+      ? this.selection.clear()
+      : this.dataSource.data.forEach((row) => this.selection.select(row));
+
+    console.log("this.selectedList ", this.selectedList);
+  }*/
+
   masterToggle() {
+    /*    if (this.isFilter) {
+      this.isAllSelected()
+        ? ((this.selectedList = []), this.selection.clear())
+        : this.dataSource.filteredData.forEach((row) =>
+            this.selection.select(row)
+          );
+      /*   } else {
+      this.isAllSelected()
+        ? ((this.selectedList = []), this.selection.clear())
+        : this.dataSource.data.forEach((row) => this.selection.select(row));
+        */
+    /*    }
+    console.log("this.selectedList ", this.selectedList);
+*/
+
     this.isAllSelected()
       ? ((this.selectedList = []), this.selection.clear())
-      : ((this.selectedList = this.dataSource.data),
+      : ((this.selectedList = this.isFilter
+          ? this.dataSource.filteredData
+          : this.dataSource.data),
         this.dataSource.data.forEach((row) => this.selection.select(row)));
 
     console.log("this.selectedList ", this.selectedList);
@@ -90,6 +121,7 @@ export class VcompensacabeceraComponent {
       row.id
     }`;
   }
+
   /**
    *
    * @param event // es el evento
